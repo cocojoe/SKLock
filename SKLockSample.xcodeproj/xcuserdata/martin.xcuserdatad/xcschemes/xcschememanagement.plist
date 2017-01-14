@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>SKLock.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>SKLockSample.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -13,6 +18,16 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>5BAD75D21E2A20BE009FB363</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5BAD75F21E2A255E009FB363</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5BAD75FA1E2A255E009FB363</key>
 		<dict>
 			<key>primary</key>
 			<true/>
