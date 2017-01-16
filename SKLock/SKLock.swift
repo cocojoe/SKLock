@@ -36,6 +36,7 @@ public class SKLock: NSObject {
         let selectionScene = SKLockMainNode(url: URL(fileURLWithPath: resource))
         selectionScene.name = "SKLockMainScene"
         node.addChild(selectionScene)
+        selectionScene.addPhysics() // Post Step
         self.onSuccess = callback
     }
 
@@ -45,7 +46,6 @@ public class SKLock: NSObject {
             .start { result in
                 switch result {
                 case .success(let credentials):
-                    print(".success: \(credentials)")
                     self.authentication.userInfo(token: credentials.accessToken!)
                         .start { result in
                             switch result {

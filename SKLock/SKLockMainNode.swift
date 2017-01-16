@@ -10,12 +10,16 @@ import SpriteKit
 
 class SKLockMainNode: SKReferenceNode {
 
-    var socialButton: SKLockButtonNode!
+    var auth0Logo: SKSpriteNode!
+    var socialFBButton: SKLockButtonNode!
+    var socialTwitterButton: SKSpriteNode!
 
     override func didLoad(_ node: SKNode?) {
-        socialButton = childNode(withName: "//social_facebook") as! SKLockButtonNode
+        auth0Logo = childNode(withName: "//auth0_logo") as! SKSpriteNode
+        socialFBButton = childNode(withName: "//social_facebook") as! SKLockButtonNode
+        socialTwitterButton = childNode(withName: "//social_twitter") as! SKSpriteNode
 
-        socialButton.selectedHandler = {
+        socialFBButton.selectedHandler = {
             SKLock.sharedInstance.auth() {
                 self.animateOut()
             }
@@ -37,5 +41,17 @@ class SKLockMainNode: SKReferenceNode {
         let actionRemove   = SKAction.removeFromParent()
         let actionSequence = SKAction.sequence([actionFadeOut,actionRemove])
         run(actionSequence)
+    }
+
+    func addPhysics() {
+        if let physicsBodyA = auth0Logo.physicsBody, let physicsBodyB = socialFBButton.physicsBody, let physicsBodyC = socialTwitterButton.physicsBody {
+            let springJointA = SKPhysicsJointSpring.joint(withBodyA: physicsBodyA, bodyB: physicsBodyB, anchorA: auth0Logo.position, anchorB: socialFBButton.position)
+            springJointA.frequency = 0.9
+            let springJointB = SKPhysicsJointSpring.joint(withBodyA: physicsBodyA, bodyB: physicsBodyC, anchorA: auth0Logo.position, anchorB: socialTwitterButton.position)
+            springJointB.frequency = 0.9
+            self.scene?.physicsWorld.add(springJointA)
+            self.scene?.physicsWorld.add(springJointB)
+        }
+
     }
 }

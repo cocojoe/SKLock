@@ -12,7 +12,7 @@ import SpriteKit
 
 func loadImageAsync(imageURL: URL, completionHandler: @escaping (UIImage?, Error?) -> ()) {
     let request = URLRequest(url: imageURL)
-    
+
     let task = URLSession.shared.dataTask(with: request) { data, response, error in
         guard data != nil else {
             print("No image data found: \(error)")
@@ -23,4 +23,16 @@ func loadImageAsync(imageURL: URL, completionHandler: @escaping (UIImage?, Error
         }
     }
     task.resume()
+}
+public extension CGFloat {
+
+    public static func random() -> CGFloat {
+        return CGFloat(Float(arc4random()) / 0xFFFFFFFF)
+    }
+
+    public static func random(min: CGFloat, max: CGFloat) -> CGFloat {
+        assert(min < max)
+        return CGFloat.random() * (max - min) + min
+    }
+    
 }
